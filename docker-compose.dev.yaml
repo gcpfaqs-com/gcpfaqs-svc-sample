@@ -1,0 +1,16 @@
+services:
+  gcpfaqs-svc-replacemes-postgres:
+    image: postgres:17
+    container_name: gcpfaqs-svc-replacemes-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: gcpfaqs-svc-replacemes_test
+    ports:
+      - "5431:5432"
+    volumes:
+      - gcpfaqs-svc-replacemes_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  gcpfaqs-svc-replacemes_postgres_data:
