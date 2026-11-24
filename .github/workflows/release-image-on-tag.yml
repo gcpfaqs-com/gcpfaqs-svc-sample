@@ -52,6 +52,7 @@ jobs:
 
       - name: Run gosec high and critical
         run: "$(go env GOPATH)/bin/gosec -severity high ./..."
+
   go-tests:
     name: Go unit and package tests
     runs-on: ubuntu-latest
@@ -67,12 +68,13 @@ jobs:
 
       - name: Run Go tests
         run: go test -v -race ./...
-        
+
   build-and-push:
     name: Build and push image to GHCR
     needs:
       - gitleaks
       - go-security
+      - go-tests
     runs-on: ubuntu-latest
     permissions:
       contents: read

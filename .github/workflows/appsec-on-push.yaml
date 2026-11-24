@@ -8,7 +8,6 @@ on:
       - "**"
   pull_request:
 
-  
 permissions:
   contents: read
 
@@ -51,6 +50,7 @@ jobs:
 
       - name: Run gosec (high and critical)
         run: "$(go env GOPATH)/bin/gosec -severity high ./..."
+
   go-tests:
     name: Go unit and package tests
     runs-on: ubuntu-latest
