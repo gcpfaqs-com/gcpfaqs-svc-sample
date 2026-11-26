@@ -8,10 +8,8 @@ jobs:
     name: Tarea Uno
     runs-on: ubuntu-latest
     steps:
-      - name: step 1 tarea uno
-        run: |
-          echo "hola"
-          echo "adios"
+      - name: clonar el repositorio
+        uses: actions/checkout@v7
       - name: step 2 tarea uno
         run: |
           echo "hola"
