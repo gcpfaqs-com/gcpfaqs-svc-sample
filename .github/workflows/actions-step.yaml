@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Step1 tarea uno
-        run: echo "step1 de la tarea1"
+        uses: actions/checkout@v7
       - name: Step2 tarea uno
         run: echo "step2 de la tarea1"        
   tareados:
