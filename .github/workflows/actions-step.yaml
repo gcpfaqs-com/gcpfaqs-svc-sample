@@ -17,6 +17,7 @@ jobs:
           echo "hola"
           echo "adios"
   tareados:
+    needs: tareauno
     name: Tarea Dos
     runs-on: ubuntu-latest
     steps:
