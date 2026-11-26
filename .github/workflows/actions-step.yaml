@@ -26,5 +26,12 @@ jobs:
       run: |
         echo "hola step 1 tarea 2"
         echo "adios step 1 tarea 2"
+    - name: download registro
+      uses: actions/download-artifact@v8
+      with:
+        name: registro
+    - name: ls registro
+      run: ls
+        
     
     
