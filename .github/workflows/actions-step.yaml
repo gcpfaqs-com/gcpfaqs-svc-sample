@@ -1,5 +1,5 @@
 name: Cancelando - Skipp - Artefacts
-on: workflow_call
+on: workflow_dispatch
 jobs:
   tareauno:
     name: Tarea Uno
