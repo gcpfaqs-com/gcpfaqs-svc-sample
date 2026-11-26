@@ -1,20 +1,25 @@
-name: cancel workflow
-on: workflow_dispatch
+name: Cancelando - Skipp - Artefacts
+on: workflow_call
 jobs:
   tareauno:
     name: Tarea Uno
     runs-on: ubuntu-latest
     steps:
-      - name: Step1 tarea uno
-        run: echo "hola" > registro.log
-      - name: Step2 tarea uno
-        run: echo "step2 de la tarea1"        
+      - name: step 1 tarea uno
+        run: |
+          echo "hola"
+          echo "adios"
+      - name: step 2 tarea uno
+        run: |
+          echo "hola"
+          echo "adios"
   tareados:
-    needs: tareauno
     name: Tarea Dos
     runs-on: ubuntu-latest
     steps:
-      - name: Step1 tarea dos
-        run: echo "step1 de la tarea2"
-      - name: Step2 tarea dos
-        run: echo "step2 de la tarea2"
+    - name: step 1 tarea dos
+      run: |
+        echo "hola step 1 tarea 2"
+        echo "adios step 1 tarea 2"
+    
+    
