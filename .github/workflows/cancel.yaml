@@ -1,0 +1,19 @@
+name: cancel workflow
+on: workflow_dispatch
+jobs:
+  tareauno:
+    name: Tarea Uno
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step1 tarea uno
+        run: echo "step1 de la tarea1
+      - name: Step2 tarea uno
+        run: echo "step2 de la tarea1        
+  tareados:
+    name: Tarea Dos
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step1 tarea dos
+        run: echo "step1 de la tarea2
+      - name: Step2 tarea dos
+        run: echo "step2 de la tarea2
