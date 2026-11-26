@@ -11,9 +11,12 @@ jobs:
       - name: clonar el repositorio
         uses: actions/checkout@v7
       - name: step 2 tarea uno
-        run: |
-          echo "hola"
-          echo "adios"
+        run: echo "hola" > registro.log
+      - name: upload artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: registro
+          path: registro.log
   tareados:
     needs: tareauno
     name: Tarea Dos
