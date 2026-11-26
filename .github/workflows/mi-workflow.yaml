@@ -13,4 +13,4 @@ jobs:
       - name: deploy
         run: echo "deploy..."
       - name: ver context
-        run: echo "${{ github }}"
+        run: echo "${{ toJson(github) }}"
