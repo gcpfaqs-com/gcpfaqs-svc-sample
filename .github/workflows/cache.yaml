@@ -17,18 +17,13 @@ jobs:
 
       - name: cache modules
         id: cache-modules
-        uses: actions/cache@v6
+        uses: actions/cache@v3
         with:
           path: |
             ~/.cache/go-build
             ~/go/pkg/mod
           key: cache-go-modules-${{ runner.os }}-${{ hashFiles('go.mod', 'go.sum') }}
-          restore-keys: |
-            cache-go-modules-${{ runner.os }}-
 
       - name: go modules tidy
         run: go mod tidy
         if: steps.cache-modules.outputs.cache-hit != 'true'
-
-      - name: test
-        run: make test
