@@ -38,13 +38,13 @@ jobs:
           go-version: '1.27.4'
           go-version-file: 'go.mod'
           check-latest: false
-      - name: cache modules
-        id: cache-modules
-        uses: actions/cache@v6
+      - name: restore modules
+        id: restore-modules
+        uses: actions/cache/restore@v6
         with:
           path: |
             ~/.cache/go-build
             ~/go/pkg/mod
-          key: cache-go-modules-${{ hashFiles('**/go.sum') }}          
+          key: cache-go-modules-${{ runner.os }}-go-${{ hashFiles('go.mod', 'go.sum') }}
       - name: test
         run: make test
