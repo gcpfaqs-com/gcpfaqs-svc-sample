@@ -8,7 +8,6 @@ jobs:
     steps:
       - name: get code
         uses: actions/checkout@v4
-
       - name: setup go
         uses: actions/setup-go@v5
         with:
@@ -17,7 +16,6 @@ jobs:
           cache: true
           cache-dependency-path: |
             go.sum
-
       - name: go modules tidy
         run: go mod tidy
 
@@ -27,7 +25,6 @@ jobs:
     steps:
       - name: get code
         uses: actions/checkout@v4
-
       - name: setup go
         uses: actions/setup-go@v5
         with:
@@ -36,6 +33,5 @@ jobs:
           cache: true
           cache-dependency-path: |
             go.sum
-
       - name: run tests
         run: make test
