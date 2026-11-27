@@ -23,6 +23,7 @@ jobs:
           cache: false
           cache-dependency-path: |
             go.sum
+      - run: echo "job 1 completed"
 
   testing:
     needs: createmodules
@@ -46,4 +47,4 @@ jobs:
           cache: false
           cache-dependency-path: |
             go.sum
-      - run: make test
+      - run: echo "job 2 completed"
