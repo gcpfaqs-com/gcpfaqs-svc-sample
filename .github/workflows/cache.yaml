@@ -14,7 +14,7 @@ jobs:
           path: |
             ~/.cache/go-build
             ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          key: ${{ runner.os }}-golang-${{ hashFiles('**/go.sum') }}
       - name: setup go
         uses: actions/setup-go@v5
         with:
@@ -39,7 +39,7 @@ jobs:
           path: |
             ~/.cache/go-build
             ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          key: ${{ runner.os }}-golang-${{ hashFiles('**/go.sum') }}
       - name: setup go
         uses: actions/setup-go@v5
         with:
@@ -48,4 +48,5 @@ jobs:
           cache: false
           cache-dependency-path: |
             go.sum
+      - run: go mod tidy
       - run: echo "job 2 completed"
