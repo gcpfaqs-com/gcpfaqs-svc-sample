@@ -1,47 +1,30 @@
-name: Testing Cache
+name: Use cache to store depemdencies
 on: workflow_dispatch
 jobs:
   setcache:
+    name: set cache job
     runs-on: ubuntu-latest
-    name: Set cache
     steps:
-    - uses: actions/checkout@v7
-    - name: Cache modules
-      uses: actions/cache@v6
-      with:
-        path: |
-          ~/.cache/go-build
-          ~/go/pkg/mod
-        key: ${{ runner.os }}-go1.27.4-${{ hashFiles('**/go.sum') }}
-        restore-keys: |
-          ${{ runner.os }}-go-
-    - name: set go env
-      uses: actions/setup-go@v7
-      with:    
-        go-version: '1.27.4'
-        cache: false
-    - name: download modules
-      run: go mod download
+      - run: actions/checkout@v6
+      - name: setup go
+        uses: actions/setup-go@v7
+        with:
+          go-version: '1.27.4'
+          cache: false
+      - name: download dependecies
+        run: go mod download
+
   getcache:
-    needs: setcache
+    name: get cache job
     runs-on: ubuntu-latest
-    name: Get cache
     steps:
-    - uses: actions/checkout@v7
-    - name: Cache modules
-      uses: actions/cache@v6
-      with:
-        path: |
-          ~/.cache/go-build
-          ~/go/pkg/mod
-        key: ${{ runner.os }}-go1.27.4-${{ hashFiles('**/go.sum') }}
-        restore-keys: |
-          ${{ runner.os }}-go-
-    - name: set go env
-      uses: actions/setup-go@v7
-      with:    
-        go-version: '1.27.4'
-        cache: false        
-    - name: download modules
-      run: go mod download
+      - run: actions/checkout@v6
+      - name: setup go
+        uses: actions/setup-go@v7
+        with:
+          go-version: '1.27.4'
+          cache: false
+      - name: download dependecies
+        run: go mod download
+
         
