@@ -48,5 +48,5 @@ jobs:
             ~/.cache/go-build
             ~/go/pkg/mod
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-      - name: run test
-        run: make test
+      - name: go modules tidy
+        run: go mod tidy
