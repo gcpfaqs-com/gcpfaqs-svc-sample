@@ -16,16 +16,16 @@ jobs:
           check-latest: false
           cache: false
 
-      - name: cache modules
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cache/go-build
-            ~/go/pkg/mod
-          key: ${{ runner.os }}-golang-1.27.4-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-golang-1.27.4-
-            ${{ runner.os }}-golang-
+#      - name: cache modules
+#        uses: actions/cache@v4
+#        with:
+#          path: |
+#            ~/.cache/go-build
+#            ~/go/pkg/mod
+#          key: ${{ runner.os }}-golang-1.27.4-${{ hashFiles('**/go.sum') }}
+#          restore-keys: |
+#            ${{ runner.os }}-golang-1.27.4-
+#            ${{ runner.os }}-golang-
 
       - name: download dependencies
         run: go mod download
@@ -48,16 +48,16 @@ jobs:
           check-latest: false
           cache: false
 
-      - name: cache modules
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cache/go-build
-            ~/go/pkg/mod
-          key: ${{ runner.os }}-golang-1.27.4-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-golang-1.27.4-
-            ${{ runner.os }}-golang-
+#      - name: cache modules
+#        uses: actions/cache@v4
+#        with:
+#          path: |
+#            ~/.cache/go-build
+#            ~/go/pkg/mod
+#          key: ${{ runner.os }}-golang-1.27.4-${{ hashFiles('**/go.sum') }}
+#          restore-keys: |
+#            ${{ runner.os }}-golang-1.27.4-
+#            ${{ runner.os }}-golang-
 
       - name: run tests
         run: go test ./...
