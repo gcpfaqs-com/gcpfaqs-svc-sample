@@ -8,23 +8,30 @@ jobs:
     steps:
       - name: get code
         uses: actions/checkout@v4
-      - name: cache modules
-        uses: actions/cache@v6
-        with:
-          path: |
-            ~/.cache/go-build
-            ~/go/pkg/mod
-          key: ${{ runner.os }}-golang-${{ hashFiles('**/go.sum') }}
+
       - name: setup go
         uses: actions/setup-go@v5
         with:
           go-version: '1.27.4'
           check-latest: false
           cache: false
-          cache-dependency-path: |
-            go.sum
-      - run: go mod tidy
-      - run: echo "job 1 completed"
+
+      - name: cache modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-golang-1.27.4-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-golang-1.27.4-
+            ${{ runner.os }}-golang-
+
+      - name: download dependencies
+        run: go mod download
+
+      - name: summary
+        run: echo "job 1 completed"
 
   testing:
     needs: createmodules
@@ -33,20 +40,27 @@ jobs:
     steps:
       - name: get code
         uses: actions/checkout@v4
-      - name: cache modules
-        uses: actions/cache@v6
-        with:
-          path: |
-            ~/.cache/go-build
-            ~/go/pkg/mod
-          key: ${{ runner.os }}-golang-${{ hashFiles('**/go.sum') }}
+
       - name: setup go
         uses: actions/setup-go@v5
         with:
           go-version: '1.27.4'
           check-latest: false
           cache: false
-          cache-dependency-path: |
-            go.sum
-      - run: go mod tidy
-      - run: echo "job 2 completed"
+
+      - name: cache modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-golang-1.27.4-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-golang-1.27.4-
+            ${{ runner.os }}-golang-
+
+      - name: run tests
+        run: go test ./...
+
+      - name: summary
+        run: echo "job 2 completed"
