@@ -44,6 +44,15 @@ jobs:
           go-version-file: 'go.mod'
           check-latest: false
 
+      - name: inspect and clean mod cache
+        run: |
+          echo "GOPATH=$(go env GOPATH)"
+          echo "GOMODCACHE=$(go env GOMODCACHE)"
+          if [ -d "$HOME/go/pkg/mod" ]; then
+            chmod -R u+w "$HOME/go/pkg/mod"
+            rm -rf "$HOME/go/pkg/mod"
+          fi
+
       - name: restore modules
         id: restore-modules
         uses: actions/cache/restore@v6
