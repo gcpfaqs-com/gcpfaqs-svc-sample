@@ -1,4 +1,4 @@
-name: Usando cache en githb actions
+name: Githb actions cache
 on: workflow_dispatch
 jobs:
   setcache:
