@@ -13,7 +13,6 @@ jobs:
           cache: false
       - name: download dependencies verbose
         run: go mod download -x
-
   getcache:
     needs: setcache
     runs-on: ubuntu-latest
