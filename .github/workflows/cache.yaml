@@ -20,6 +20,7 @@ jobs:
         run: go mod tidy
 
   testing:
+    needs: createmodules
     runs-on: ubuntu-latest
     name: test go files
     steps:
