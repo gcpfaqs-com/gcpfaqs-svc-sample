@@ -8,13 +8,13 @@ jobs:
     steps:
       - name: get code
         uses: actions/checkout@v4
-#      - name: cache modules
-#        uses: actions/cache@v6
-#        with:
-#          path: |
-#            ~/.cache/go-build
-#            ~/go/pkg/mod
-#          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+      - name: cache modules
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
       - name: setup go
         uses: actions/setup-go@v5
         with:
@@ -31,13 +31,13 @@ jobs:
     steps:
       - name: get code
         uses: actions/checkout@v4
-#      - name: cache modules
-#        uses: actions/cache@v6
-#        with:
-#          path: |
-#            ~/.cache/go-build
-#            ~/go/pkg/mod
-#          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+      - name: cache modules
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
       - name: setup go
         uses: actions/setup-go@v5
         with:
