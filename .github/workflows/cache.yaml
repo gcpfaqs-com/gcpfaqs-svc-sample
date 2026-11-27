@@ -23,6 +23,7 @@ jobs:
           cache: false
           cache-dependency-path: |
             go.sum
+      - run: go mod tidy
       - run: echo "job 1 completed"
 
   testing:
