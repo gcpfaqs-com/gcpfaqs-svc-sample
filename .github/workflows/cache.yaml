@@ -11,15 +11,6 @@ jobs:
         with:
           go-version: '1.27.4'
           cache: false
-      - name: Cache dependencies
-        uses: actions/cache@v6
-        with:
-          path: |
-            ~/.cache/go-build
-            ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
       - name: download dependencies verbose
         run: go mod download -x
 
@@ -34,15 +25,6 @@ jobs:
         with:
           go-version: '1.27.4'
           cache: false
-      - name: Cache dependencies
-        uses: actions/cache@v6
-        with:
-          path: |
-            ~/.cache/go-build
-            ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
       - name: download dependencies verbose
         run: go mod download -x
                     
