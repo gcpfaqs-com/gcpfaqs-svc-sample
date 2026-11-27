@@ -13,6 +13,29 @@ jobs:
           go-version: '1.27.4'
           go-version-file: 'go.mod'
           check-latest: false
+      - name: cache modules
+        id: cache-modules
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: cache-go-modules-${{ hashFiles('**/go.sum') }}          
       - name: go modules tidy
         run: go mod tidy
+        if: steps.cache-modules.outputs.cache-hit != 'true'
     
+  testing:
+    runs-on: ubuntu-latest
+    name: testing go files
+    steps:
+      - name: get code
+        uses: actions/checkout@v7
+      - name: setup go
+        uses: actions/setup-go@v7
+        with:
+          go-version: '1.27.4'
+          go-version-file: 'go.mod'
+          check-latest: false
+      - name: test
+        run: make test
