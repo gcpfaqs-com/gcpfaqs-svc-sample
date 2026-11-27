@@ -6,6 +6,11 @@ jobs:
     name: Set dependencies cache
     steps:
       - uses: actions/checkout@v6
+      - name: setup go env
+        uses: actions/setup-go@v7
+        with:
+          go-version: '1.27.4'
+          cache: false
       - uses: actions/cache@v6
         with:
           path: |
@@ -14,11 +19,6 @@ jobs:
           key: ${{ runner.os }}-go123-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-      - name: setup go env
-        uses: actions/setup-go@v7
-        with:
-          go-version: '1.27.4'
-          cache: false
       - name: download dependencies verbose
         run: go mod download -x
 
@@ -28,6 +28,11 @@ jobs:
     name: Get dependencies cache
     steps:
       - uses: actions/checkout@v6
+      - name: setup go env
+        uses: actions/setup-go@v7
+        with:
+          go-version: '1.27.4'
+          cache: false
       - uses: actions/cache@v6
         with:
           path: |
@@ -36,11 +41,6 @@ jobs:
           key: ${{ runner.os }}-go123-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-      - name: setup go env
-        uses: actions/setup-go@v7
-        with:
-          go-version: '1.27.4'
-          cache: false
       - name: download dependencies verbose
         run: go mod download -x
                     
