@@ -23,6 +23,7 @@ jobs:
     - name: download modules
       run: go mod download
   getcache:
+    needs: setcache
     runs-on: ubuntu-latest
     name: Get cache
     steps:
