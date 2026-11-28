@@ -1,4 +1,4 @@
-name: Githb actions cache
+name: Githb actions continue
 on: workflow_dispatch
 jobs:
   setcache:
@@ -22,13 +22,6 @@ jobs:
             ${{ runner.os }}-go-
       - name: download dependencies verbose
         run: go mod download -x
-      - run: exit 1
-      - name: show error log
-        if: failure()
-        run: echo "im error log"
-      - name: show sucess log
-        if: success()
-        run: echo "im sucess log"
   getcache:
     needs: setcache
     runs-on: ubuntu-latest
@@ -52,7 +45,6 @@ jobs:
       - name: download dependencies verbose
         run: go mod download -x
   reports:
-    if: always()
     needs: [setcache,getcache]
     runs-on: ubuntu-latest
     name: Reports
