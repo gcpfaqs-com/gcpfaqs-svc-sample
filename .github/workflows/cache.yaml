@@ -13,6 +13,7 @@ jobs:
           go-version: '1.27.4'
           cache: false
       - uses: actions/cache@v6
+        id: cache-dependencies
         with:
           path: |
             ~/.cache/go-build
@@ -20,7 +21,7 @@ jobs:
           key: ${{ runner.os }}-goversion1274-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-      - name: download dependencies verbose
+      - name: download dependencies verbose        
         run: go mod download -x
   getcache:
     needs: setcache
@@ -44,8 +45,9 @@ jobs:
       - name: download dependencies verbose
         run: go mod download -x
   reports:
+    needs: [getcache,setcache]
     runs-on: ubuntu-latest
-    name: Show reports    
+    name: Show always reports    
     steps:
       - run: echo "reports"
         if: always()
