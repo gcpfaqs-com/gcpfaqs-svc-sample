@@ -38,16 +38,11 @@ jobs:
         with:
           path: |
             ~/.cache/go-build
-            ~/go/pkg/mod
-          key: ${{ runner.os }}-goversion1274-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
-      - name: download dependencies verbose
-        run: go mod download -x
   reports:
-    needs: [getcache,setcache]
+    if: always()
+    needs: [setcache,getcache]
     runs-on: ubuntu-latest
-    name: Show always reports    
+    name: Reports
     steps:
       - run: echo "reports"
-        if: always()
+    
