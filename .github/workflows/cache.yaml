@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Set dependencies cache
     steps:
+      - run: exit 1
       - uses: actions/checkout@v6
       - name: setup go env
         uses: actions/setup-go@v7
@@ -42,4 +43,9 @@ jobs:
             ${{ runner.os }}-go-
       - name: download dependencies verbose
         run: go mod download -x
-                    
+  reports:
+    runs-on: ubuntu-latest
+    name: Show reports    
+    steps:
+      - run: echo "reports"
+        if: always()
