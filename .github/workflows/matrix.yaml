@@ -17,3 +17,6 @@ jobs:
       - run: |
           echo "current os ${{ matrix.os }}"
           echo "current versions ${{ matrix.versions }}"
+      - name: exit on 14
+        if: matrix.versions == 14
+        run: exit 1
