@@ -1,0 +1,19 @@
+name: matrix example
+on: push
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        versions: [14,15,16]
+        include:
+          - os: ubuntu-latest
+            versions: 17
+        exclude:
+          - os: windows-latest
+            versions: 14
+    runs-on: ${{ matrix.os }}
+    steps:
+      - run: |
+          echo "current os ${{ matrix.os }}"
+          echo "current versions ${{ matrix.versions }}"
