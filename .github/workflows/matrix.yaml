@@ -1,4 +1,4 @@
-name: matrix example
+name: matrix usage
 on: workflow_dispatch
 jobs:
   test:
@@ -6,17 +6,10 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         versions: [14,15,16]
-        include:
-          - os: ubuntu-latest
-            versions: 17
-        exclude:
-          - os: windows-latest
-            versions: 14
     runs-on: ${{ matrix.os }}
+    name: compile test build
     steps:
-      - run: |
+      - name: show values
+        run: |
           echo "current os ${{ matrix.os }}"
-          echo "current versions ${{ matrix.versions }}"
-      - name: exit on 14
-        if: matrix.versions == 14
-        run: exit 1
+          echo "current node version ${{ matrix.versions }}"
