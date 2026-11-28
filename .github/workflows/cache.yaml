@@ -5,7 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Set dependencies cache
     steps:
-      - run: exit 1
       - uses: actions/checkout@v6
       - name: setup go env
         uses: actions/setup-go@v7
@@ -21,7 +20,8 @@ jobs:
           key: ${{ runner.os }}-goversion1274-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-      - name: download dependencies verbose        
+      - name: download dependencies verbose
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: go mod download -x
   getcache:
     needs: setcache
@@ -35,9 +35,17 @@ jobs:
           go-version: '1.27.4'
           cache: false
       - uses: actions/cache@v6
+        id: cache-dependencies
         with:
           path: |
             ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-goversion1274-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+      - name: download dependencies verbose
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: go mod download -x
   reports:
     if: always()
     needs: [setcache,getcache]
